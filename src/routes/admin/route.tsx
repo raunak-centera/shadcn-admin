@@ -6,7 +6,7 @@ import { SidebarProvider } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/layout/app-sidebar'
 import SkipToMain from '@/components/skip-to-main'
 
-export const Route = createFileRoute('/_authenticated')({
+export const Route = createFileRoute('/admin')({
   component: RouteComponent,
 })
 

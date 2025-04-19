@@ -11,8 +11,10 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated/route'
-import { Route as AuthenticatedIndexImport } from './routes/_authenticated/index'
+import { Route as AdminRouteImport } from './routes/admin/route'
+import { Route as PublicRouteImport } from './routes/_public/route'
+import { Route as AdminIndexImport } from './routes/admin/index'
+import { Route as PublicIndexImport } from './routes/_public/index'
 import { Route as errors503Import } from './routes/(errors)/503'
 import { Route as errors500Import } from './routes/(errors)/500'
 import { Route as errors404Import } from './routes/(errors)/404'
@@ -23,29 +25,42 @@ import { Route as authSignIn2Import } from './routes/(auth)/sign-in-2'
 import { Route as authSignInImport } from './routes/(auth)/sign-in'
 import { Route as authOtpImport } from './routes/(auth)/otp'
 import { Route as authForgotPasswordImport } from './routes/(auth)/forgot-password'
-import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings/route'
-import { Route as AuthenticatedUsersIndexImport } from './routes/_authenticated/users/index'
-import { Route as AuthenticatedTasksIndexImport } from './routes/_authenticated/tasks/index'
-import { Route as AuthenticatedSettingsIndexImport } from './routes/_authenticated/settings/index'
-import { Route as AuthenticatedHelpCenterIndexImport } from './routes/_authenticated/help-center/index'
-import { Route as AuthenticatedChatsIndexImport } from './routes/_authenticated/chats/index'
-import { Route as AuthenticatedAppsIndexImport } from './routes/_authenticated/apps/index'
-import { Route as AuthenticatedSettingsNotificationsImport } from './routes/_authenticated/settings/notifications'
-import { Route as AuthenticatedSettingsDisplayImport } from './routes/_authenticated/settings/display'
-import { Route as AuthenticatedSettingsAppearanceImport } from './routes/_authenticated/settings/appearance'
-import { Route as AuthenticatedSettingsAccountImport } from './routes/_authenticated/settings/account'
+import { Route as AdminSettingsRouteImport } from './routes/admin/settings/route'
+import { Route as AdminUsersIndexImport } from './routes/admin/users/index'
+import { Route as AdminTasksIndexImport } from './routes/admin/tasks/index'
+import { Route as AdminSettingsIndexImport } from './routes/admin/settings/index'
+import { Route as AdminHelpCenterIndexImport } from './routes/admin/help-center/index'
+import { Route as AdminChatsIndexImport } from './routes/admin/chats/index'
+import { Route as AdminAppsIndexImport } from './routes/admin/apps/index'
+import { Route as PublicPage2IndexImport } from './routes/_public/page2/index'
+import { Route as AdminSettingsNotificationsImport } from './routes/admin/settings/notifications'
+import { Route as AdminSettingsDisplayImport } from './routes/admin/settings/display'
+import { Route as AdminSettingsAppearanceImport } from './routes/admin/settings/appearance'
+import { Route as AdminSettingsAccountImport } from './routes/admin/settings/account'
 
 // Create/Update Routes
 
-const AuthenticatedRouteRoute = AuthenticatedRouteImport.update({
-  id: '/_authenticated',
+const AdminRouteRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthenticatedIndexRoute = AuthenticatedIndexImport.update({
+const PublicRouteRoute = PublicRouteImport.update({
+  id: '/_public',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminIndexRoute = AdminIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+
+const PublicIndexRoute = PublicIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PublicRouteRoute,
 } as any)
 
 const errors503Route = errors503Import.update({
@@ -108,98 +123,104 @@ const authForgotPasswordRoute = authForgotPasswordImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthenticatedSettingsRouteRoute = AuthenticatedSettingsRouteImport.update(
-  {
-    id: '/settings',
-    path: '/settings',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any,
-)
+const AdminSettingsRouteRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 
-const AuthenticatedUsersIndexRoute = AuthenticatedUsersIndexImport.update({
+const AdminUsersIndexRoute = AdminUsersIndexImport.update({
   id: '/users/',
   path: '/users/',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  getParentRoute: () => AdminRouteRoute,
 } as any)
 
-const AuthenticatedTasksIndexRoute = AuthenticatedTasksIndexImport.update({
+const AdminTasksIndexRoute = AdminTasksIndexImport.update({
   id: '/tasks/',
   path: '/tasks/',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  getParentRoute: () => AdminRouteRoute,
 } as any)
 
-const AuthenticatedSettingsIndexRoute = AuthenticatedSettingsIndexImport.update(
+const AdminSettingsIndexRoute = AdminSettingsIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminSettingsRouteRoute,
+} as any)
+
+const AdminHelpCenterIndexRoute = AdminHelpCenterIndexImport.update({
+  id: '/help-center/',
+  path: '/help-center/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+
+const AdminChatsIndexRoute = AdminChatsIndexImport.update({
+  id: '/chats/',
+  path: '/chats/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+
+const AdminAppsIndexRoute = AdminAppsIndexImport.update({
+  id: '/apps/',
+  path: '/apps/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+
+const PublicPage2IndexRoute = PublicPage2IndexImport.update({
+  id: '/page2/',
+  path: '/page2/',
+  getParentRoute: () => PublicRouteRoute,
+} as any)
+
+const AdminSettingsNotificationsRoute = AdminSettingsNotificationsImport.update(
   {
-    id: '/',
-    path: '/',
-    getParentRoute: () => AuthenticatedSettingsRouteRoute,
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AdminSettingsRouteRoute,
   } as any,
 )
 
-const AuthenticatedHelpCenterIndexRoute =
-  AuthenticatedHelpCenterIndexImport.update({
-    id: '/help-center/',
-    path: '/help-center/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-
-const AuthenticatedChatsIndexRoute = AuthenticatedChatsIndexImport.update({
-  id: '/chats/',
-  path: '/chats/',
-  getParentRoute: () => AuthenticatedRouteRoute,
+const AdminSettingsDisplayRoute = AdminSettingsDisplayImport.update({
+  id: '/display',
+  path: '/display',
+  getParentRoute: () => AdminSettingsRouteRoute,
 } as any)
 
-const AuthenticatedAppsIndexRoute = AuthenticatedAppsIndexImport.update({
-  id: '/apps/',
-  path: '/apps/',
-  getParentRoute: () => AuthenticatedRouteRoute,
+const AdminSettingsAppearanceRoute = AdminSettingsAppearanceImport.update({
+  id: '/appearance',
+  path: '/appearance',
+  getParentRoute: () => AdminSettingsRouteRoute,
 } as any)
 
-const AuthenticatedSettingsNotificationsRoute =
-  AuthenticatedSettingsNotificationsImport.update({
-    id: '/notifications',
-    path: '/notifications',
-    getParentRoute: () => AuthenticatedSettingsRouteRoute,
-  } as any)
-
-const AuthenticatedSettingsDisplayRoute =
-  AuthenticatedSettingsDisplayImport.update({
-    id: '/display',
-    path: '/display',
-    getParentRoute: () => AuthenticatedSettingsRouteRoute,
-  } as any)
-
-const AuthenticatedSettingsAppearanceRoute =
-  AuthenticatedSettingsAppearanceImport.update({
-    id: '/appearance',
-    path: '/appearance',
-    getParentRoute: () => AuthenticatedSettingsRouteRoute,
-  } as any)
-
-const AuthenticatedSettingsAccountRoute =
-  AuthenticatedSettingsAccountImport.update({
-    id: '/account',
-    path: '/account',
-    getParentRoute: () => AuthenticatedSettingsRouteRoute,
-  } as any)
+const AdminSettingsAccountRoute = AdminSettingsAccountImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => AdminSettingsRouteRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_authenticated': {
-      id: '/_authenticated'
+    '/_public': {
+      id: '/_public'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof AuthenticatedRouteImport
+      preLoaderRoute: typeof PublicRouteImport
       parentRoute: typeof rootRoute
     }
-    '/_authenticated/settings': {
-      id: '/_authenticated/settings'
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
       path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
-      parentRoute: typeof AuthenticatedRouteImport
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRouteImport
     }
     '/(auth)/forgot-password': {
       id: '/(auth)/forgot-password'
@@ -271,137 +292,163 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof errors503Import
       parentRoute: typeof rootRoute
     }
-    '/_authenticated/': {
-      id: '/_authenticated/'
+    '/_public/': {
+      id: '/_public/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
+      preLoaderRoute: typeof PublicIndexImport
+      parentRoute: typeof PublicRouteImport
     }
-    '/_authenticated/settings/account': {
-      id: '/_authenticated/settings/account'
-      path: '/account'
-      fullPath: '/settings/account'
-      preLoaderRoute: typeof AuthenticatedSettingsAccountImport
-      parentRoute: typeof AuthenticatedSettingsRouteImport
-    }
-    '/_authenticated/settings/appearance': {
-      id: '/_authenticated/settings/appearance'
-      path: '/appearance'
-      fullPath: '/settings/appearance'
-      preLoaderRoute: typeof AuthenticatedSettingsAppearanceImport
-      parentRoute: typeof AuthenticatedSettingsRouteImport
-    }
-    '/_authenticated/settings/display': {
-      id: '/_authenticated/settings/display'
-      path: '/display'
-      fullPath: '/settings/display'
-      preLoaderRoute: typeof AuthenticatedSettingsDisplayImport
-      parentRoute: typeof AuthenticatedSettingsRouteImport
-    }
-    '/_authenticated/settings/notifications': {
-      id: '/_authenticated/settings/notifications'
-      path: '/notifications'
-      fullPath: '/settings/notifications'
-      preLoaderRoute: typeof AuthenticatedSettingsNotificationsImport
-      parentRoute: typeof AuthenticatedSettingsRouteImport
-    }
-    '/_authenticated/apps/': {
-      id: '/_authenticated/apps/'
-      path: '/apps'
-      fullPath: '/apps'
-      preLoaderRoute: typeof AuthenticatedAppsIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/chats/': {
-      id: '/_authenticated/chats/'
-      path: '/chats'
-      fullPath: '/chats'
-      preLoaderRoute: typeof AuthenticatedChatsIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/help-center/': {
-      id: '/_authenticated/help-center/'
-      path: '/help-center'
-      fullPath: '/help-center'
-      preLoaderRoute: typeof AuthenticatedHelpCenterIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
-    '/_authenticated/settings/': {
-      id: '/_authenticated/settings/'
+    '/admin/': {
+      id: '/admin/'
       path: '/'
-      fullPath: '/settings/'
-      preLoaderRoute: typeof AuthenticatedSettingsIndexImport
-      parentRoute: typeof AuthenticatedSettingsRouteImport
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexImport
+      parentRoute: typeof AdminRouteImport
     }
-    '/_authenticated/tasks/': {
-      id: '/_authenticated/tasks/'
+    '/admin/settings/account': {
+      id: '/admin/settings/account'
+      path: '/account'
+      fullPath: '/admin/settings/account'
+      preLoaderRoute: typeof AdminSettingsAccountImport
+      parentRoute: typeof AdminSettingsRouteImport
+    }
+    '/admin/settings/appearance': {
+      id: '/admin/settings/appearance'
+      path: '/appearance'
+      fullPath: '/admin/settings/appearance'
+      preLoaderRoute: typeof AdminSettingsAppearanceImport
+      parentRoute: typeof AdminSettingsRouteImport
+    }
+    '/admin/settings/display': {
+      id: '/admin/settings/display'
+      path: '/display'
+      fullPath: '/admin/settings/display'
+      preLoaderRoute: typeof AdminSettingsDisplayImport
+      parentRoute: typeof AdminSettingsRouteImport
+    }
+    '/admin/settings/notifications': {
+      id: '/admin/settings/notifications'
+      path: '/notifications'
+      fullPath: '/admin/settings/notifications'
+      preLoaderRoute: typeof AdminSettingsNotificationsImport
+      parentRoute: typeof AdminSettingsRouteImport
+    }
+    '/_public/page2/': {
+      id: '/_public/page2/'
+      path: '/page2'
+      fullPath: '/page2'
+      preLoaderRoute: typeof PublicPage2IndexImport
+      parentRoute: typeof PublicRouteImport
+    }
+    '/admin/apps/': {
+      id: '/admin/apps/'
+      path: '/apps'
+      fullPath: '/admin/apps'
+      preLoaderRoute: typeof AdminAppsIndexImport
+      parentRoute: typeof AdminRouteImport
+    }
+    '/admin/chats/': {
+      id: '/admin/chats/'
+      path: '/chats'
+      fullPath: '/admin/chats'
+      preLoaderRoute: typeof AdminChatsIndexImport
+      parentRoute: typeof AdminRouteImport
+    }
+    '/admin/help-center/': {
+      id: '/admin/help-center/'
+      path: '/help-center'
+      fullPath: '/admin/help-center'
+      preLoaderRoute: typeof AdminHelpCenterIndexImport
+      parentRoute: typeof AdminRouteImport
+    }
+    '/admin/settings/': {
+      id: '/admin/settings/'
+      path: '/'
+      fullPath: '/admin/settings/'
+      preLoaderRoute: typeof AdminSettingsIndexImport
+      parentRoute: typeof AdminSettingsRouteImport
+    }
+    '/admin/tasks/': {
+      id: '/admin/tasks/'
       path: '/tasks'
-      fullPath: '/tasks'
-      preLoaderRoute: typeof AuthenticatedTasksIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
+      fullPath: '/admin/tasks'
+      preLoaderRoute: typeof AdminTasksIndexImport
+      parentRoute: typeof AdminRouteImport
     }
-    '/_authenticated/users/': {
-      id: '/_authenticated/users/'
+    '/admin/users/': {
+      id: '/admin/users/'
       path: '/users'
-      fullPath: '/users'
-      preLoaderRoute: typeof AuthenticatedUsersIndexImport
-      parentRoute: typeof AuthenticatedRouteImport
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersIndexImport
+      parentRoute: typeof AdminRouteImport
     }
   }
 }
 
 // Create and export the route tree
 
-interface AuthenticatedSettingsRouteRouteChildren {
-  AuthenticatedSettingsAccountRoute: typeof AuthenticatedSettingsAccountRoute
-  AuthenticatedSettingsAppearanceRoute: typeof AuthenticatedSettingsAppearanceRoute
-  AuthenticatedSettingsDisplayRoute: typeof AuthenticatedSettingsDisplayRoute
-  AuthenticatedSettingsNotificationsRoute: typeof AuthenticatedSettingsNotificationsRoute
-  AuthenticatedSettingsIndexRoute: typeof AuthenticatedSettingsIndexRoute
+interface PublicRouteRouteChildren {
+  PublicIndexRoute: typeof PublicIndexRoute
+  PublicPage2IndexRoute: typeof PublicPage2IndexRoute
 }
 
-const AuthenticatedSettingsRouteRouteChildren: AuthenticatedSettingsRouteRouteChildren =
-  {
-    AuthenticatedSettingsAccountRoute: AuthenticatedSettingsAccountRoute,
-    AuthenticatedSettingsAppearanceRoute: AuthenticatedSettingsAppearanceRoute,
-    AuthenticatedSettingsDisplayRoute: AuthenticatedSettingsDisplayRoute,
-    AuthenticatedSettingsNotificationsRoute:
-      AuthenticatedSettingsNotificationsRoute,
-    AuthenticatedSettingsIndexRoute: AuthenticatedSettingsIndexRoute,
-  }
-
-const AuthenticatedSettingsRouteRouteWithChildren =
-  AuthenticatedSettingsRouteRoute._addFileChildren(
-    AuthenticatedSettingsRouteRouteChildren,
-  )
-
-interface AuthenticatedRouteRouteChildren {
-  AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
-  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
-  AuthenticatedAppsIndexRoute: typeof AuthenticatedAppsIndexRoute
-  AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
-  AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
-  AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
-  AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
+const PublicRouteRouteChildren: PublicRouteRouteChildren = {
+  PublicIndexRoute: PublicIndexRoute,
+  PublicPage2IndexRoute: PublicPage2IndexRoute,
 }
 
-const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
-  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
-  AuthenticatedAppsIndexRoute: AuthenticatedAppsIndexRoute,
-  AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
-  AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
-  AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
-  AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
+const PublicRouteRouteWithChildren = PublicRouteRoute._addFileChildren(
+  PublicRouteRouteChildren,
+)
+
+interface AdminSettingsRouteRouteChildren {
+  AdminSettingsAccountRoute: typeof AdminSettingsAccountRoute
+  AdminSettingsAppearanceRoute: typeof AdminSettingsAppearanceRoute
+  AdminSettingsDisplayRoute: typeof AdminSettingsDisplayRoute
+  AdminSettingsNotificationsRoute: typeof AdminSettingsNotificationsRoute
+  AdminSettingsIndexRoute: typeof AdminSettingsIndexRoute
 }
 
-const AuthenticatedRouteRouteWithChildren =
-  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+const AdminSettingsRouteRouteChildren: AdminSettingsRouteRouteChildren = {
+  AdminSettingsAccountRoute: AdminSettingsAccountRoute,
+  AdminSettingsAppearanceRoute: AdminSettingsAppearanceRoute,
+  AdminSettingsDisplayRoute: AdminSettingsDisplayRoute,
+  AdminSettingsNotificationsRoute: AdminSettingsNotificationsRoute,
+  AdminSettingsIndexRoute: AdminSettingsIndexRoute,
+}
+
+const AdminSettingsRouteRouteWithChildren =
+  AdminSettingsRouteRoute._addFileChildren(AdminSettingsRouteRouteChildren)
+
+interface AdminRouteRouteChildren {
+  AdminSettingsRouteRoute: typeof AdminSettingsRouteRouteWithChildren
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminAppsIndexRoute: typeof AdminAppsIndexRoute
+  AdminChatsIndexRoute: typeof AdminChatsIndexRoute
+  AdminHelpCenterIndexRoute: typeof AdminHelpCenterIndexRoute
+  AdminTasksIndexRoute: typeof AdminTasksIndexRoute
+  AdminUsersIndexRoute: typeof AdminUsersIndexRoute
+}
+
+const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminSettingsRouteRoute: AdminSettingsRouteRouteWithChildren,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminAppsIndexRoute: AdminAppsIndexRoute,
+  AdminChatsIndexRoute: AdminChatsIndexRoute,
+  AdminHelpCenterIndexRoute: AdminHelpCenterIndexRoute,
+  AdminTasksIndexRoute: AdminTasksIndexRoute,
+  AdminUsersIndexRoute: AdminUsersIndexRoute,
+}
+
+const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
+  AdminRouteRouteChildren,
+)
 
 export interface FileRoutesByFullPath {
-  '': typeof AuthenticatedRouteRouteWithChildren
-  '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
+  '': typeof PublicRouteRouteWithChildren
+  '/admin': typeof AdminRouteRouteWithChildren
+  '/admin/settings': typeof AdminSettingsRouteRouteWithChildren
   '/forgot-password': typeof authForgotPasswordRoute
   '/otp': typeof authOtpRoute
   '/sign-in': typeof authSignInRoute
@@ -412,17 +459,19 @@ export interface FileRoutesByFullPath {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
-  '/': typeof AuthenticatedIndexRoute
-  '/settings/account': typeof AuthenticatedSettingsAccountRoute
-  '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
-  '/settings/display': typeof AuthenticatedSettingsDisplayRoute
-  '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
-  '/apps': typeof AuthenticatedAppsIndexRoute
-  '/chats': typeof AuthenticatedChatsIndexRoute
-  '/help-center': typeof AuthenticatedHelpCenterIndexRoute
-  '/settings/': typeof AuthenticatedSettingsIndexRoute
-  '/tasks': typeof AuthenticatedTasksIndexRoute
-  '/users': typeof AuthenticatedUsersIndexRoute
+  '/': typeof PublicIndexRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/settings/account': typeof AdminSettingsAccountRoute
+  '/admin/settings/appearance': typeof AdminSettingsAppearanceRoute
+  '/admin/settings/display': typeof AdminSettingsDisplayRoute
+  '/admin/settings/notifications': typeof AdminSettingsNotificationsRoute
+  '/page2': typeof PublicPage2IndexRoute
+  '/admin/apps': typeof AdminAppsIndexRoute
+  '/admin/chats': typeof AdminChatsIndexRoute
+  '/admin/help-center': typeof AdminHelpCenterIndexRoute
+  '/admin/settings/': typeof AdminSettingsIndexRoute
+  '/admin/tasks': typeof AdminTasksIndexRoute
+  '/admin/users': typeof AdminUsersIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -436,23 +485,26 @@ export interface FileRoutesByTo {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
-  '/': typeof AuthenticatedIndexRoute
-  '/settings/account': typeof AuthenticatedSettingsAccountRoute
-  '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
-  '/settings/display': typeof AuthenticatedSettingsDisplayRoute
-  '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
-  '/apps': typeof AuthenticatedAppsIndexRoute
-  '/chats': typeof AuthenticatedChatsIndexRoute
-  '/help-center': typeof AuthenticatedHelpCenterIndexRoute
-  '/settings': typeof AuthenticatedSettingsIndexRoute
-  '/tasks': typeof AuthenticatedTasksIndexRoute
-  '/users': typeof AuthenticatedUsersIndexRoute
+  '/': typeof PublicIndexRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/settings/account': typeof AdminSettingsAccountRoute
+  '/admin/settings/appearance': typeof AdminSettingsAppearanceRoute
+  '/admin/settings/display': typeof AdminSettingsDisplayRoute
+  '/admin/settings/notifications': typeof AdminSettingsNotificationsRoute
+  '/page2': typeof PublicPage2IndexRoute
+  '/admin/apps': typeof AdminAppsIndexRoute
+  '/admin/chats': typeof AdminChatsIndexRoute
+  '/admin/help-center': typeof AdminHelpCenterIndexRoute
+  '/admin/settings': typeof AdminSettingsIndexRoute
+  '/admin/tasks': typeof AdminTasksIndexRoute
+  '/admin/users': typeof AdminUsersIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/_authenticated/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
+  '/_public': typeof PublicRouteRouteWithChildren
+  '/admin': typeof AdminRouteRouteWithChildren
+  '/admin/settings': typeof AdminSettingsRouteRouteWithChildren
   '/(auth)/forgot-password': typeof authForgotPasswordRoute
   '/(auth)/otp': typeof authOtpRoute
   '/(auth)/sign-in': typeof authSignInRoute
@@ -463,24 +515,27 @@ export interface FileRoutesById {
   '/(errors)/404': typeof errors404Route
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
-  '/_authenticated/': typeof AuthenticatedIndexRoute
-  '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
-  '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
-  '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
-  '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
-  '/_authenticated/apps/': typeof AuthenticatedAppsIndexRoute
-  '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
-  '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
-  '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
-  '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
-  '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
+  '/_public/': typeof PublicIndexRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/settings/account': typeof AdminSettingsAccountRoute
+  '/admin/settings/appearance': typeof AdminSettingsAppearanceRoute
+  '/admin/settings/display': typeof AdminSettingsDisplayRoute
+  '/admin/settings/notifications': typeof AdminSettingsNotificationsRoute
+  '/_public/page2/': typeof PublicPage2IndexRoute
+  '/admin/apps/': typeof AdminAppsIndexRoute
+  '/admin/chats/': typeof AdminChatsIndexRoute
+  '/admin/help-center/': typeof AdminHelpCenterIndexRoute
+  '/admin/settings/': typeof AdminSettingsIndexRoute
+  '/admin/tasks/': typeof AdminTasksIndexRoute
+  '/admin/users/': typeof AdminUsersIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | ''
-    | '/settings'
+    | '/admin'
+    | '/admin/settings'
     | '/forgot-password'
     | '/otp'
     | '/sign-in'
@@ -492,16 +547,18 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/'
-    | '/settings/account'
-    | '/settings/appearance'
-    | '/settings/display'
-    | '/settings/notifications'
-    | '/apps'
-    | '/chats'
-    | '/help-center'
-    | '/settings/'
-    | '/tasks'
-    | '/users'
+    | '/admin/'
+    | '/admin/settings/account'
+    | '/admin/settings/appearance'
+    | '/admin/settings/display'
+    | '/admin/settings/notifications'
+    | '/page2'
+    | '/admin/apps'
+    | '/admin/chats'
+    | '/admin/help-center'
+    | '/admin/settings/'
+    | '/admin/tasks'
+    | '/admin/users'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/forgot-password'
@@ -515,20 +572,23 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/'
-    | '/settings/account'
-    | '/settings/appearance'
-    | '/settings/display'
-    | '/settings/notifications'
-    | '/apps'
-    | '/chats'
-    | '/help-center'
-    | '/settings'
-    | '/tasks'
-    | '/users'
+    | '/admin'
+    | '/admin/settings/account'
+    | '/admin/settings/appearance'
+    | '/admin/settings/display'
+    | '/admin/settings/notifications'
+    | '/page2'
+    | '/admin/apps'
+    | '/admin/chats'
+    | '/admin/help-center'
+    | '/admin/settings'
+    | '/admin/tasks'
+    | '/admin/users'
   id:
     | '__root__'
-    | '/_authenticated'
-    | '/_authenticated/settings'
+    | '/_public'
+    | '/admin'
+    | '/admin/settings'
     | '/(auth)/forgot-password'
     | '/(auth)/otp'
     | '/(auth)/sign-in'
@@ -539,22 +599,25 @@ export interface FileRouteTypes {
     | '/(errors)/404'
     | '/(errors)/500'
     | '/(errors)/503'
-    | '/_authenticated/'
-    | '/_authenticated/settings/account'
-    | '/_authenticated/settings/appearance'
-    | '/_authenticated/settings/display'
-    | '/_authenticated/settings/notifications'
-    | '/_authenticated/apps/'
-    | '/_authenticated/chats/'
-    | '/_authenticated/help-center/'
-    | '/_authenticated/settings/'
-    | '/_authenticated/tasks/'
-    | '/_authenticated/users/'
+    | '/_public/'
+    | '/admin/'
+    | '/admin/settings/account'
+    | '/admin/settings/appearance'
+    | '/admin/settings/display'
+    | '/admin/settings/notifications'
+    | '/_public/page2/'
+    | '/admin/apps/'
+    | '/admin/chats/'
+    | '/admin/help-center/'
+    | '/admin/settings/'
+    | '/admin/tasks/'
+    | '/admin/users/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  PublicRouteRoute: typeof PublicRouteRouteWithChildren
+  AdminRouteRoute: typeof AdminRouteRouteWithChildren
   authForgotPasswordRoute: typeof authForgotPasswordRoute
   authOtpRoute: typeof authOtpRoute
   authSignInRoute: typeof authSignInRoute
@@ -568,7 +631,8 @@ export interface RootRouteChildren {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  PublicRouteRoute: PublicRouteRouteWithChildren,
+  AdminRouteRoute: AdminRouteRouteWithChildren,
   authForgotPasswordRoute: authForgotPasswordRoute,
   authOtpRoute: authOtpRoute,
   authSignInRoute: authSignInRoute,
@@ -591,7 +655,8 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/_authenticated",
+        "/_public",
+        "/admin",
         "/(auth)/forgot-password",
         "/(auth)/otp",
         "/(auth)/sign-in",
@@ -604,27 +669,34 @@ export const routeTree = rootRoute
         "/(errors)/503"
       ]
     },
-    "/_authenticated": {
-      "filePath": "_authenticated/route.tsx",
+    "/_public": {
+      "filePath": "_public/route.tsx",
       "children": [
-        "/_authenticated/settings",
-        "/_authenticated/",
-        "/_authenticated/apps/",
-        "/_authenticated/chats/",
-        "/_authenticated/help-center/",
-        "/_authenticated/tasks/",
-        "/_authenticated/users/"
+        "/_public/",
+        "/_public/page2/"
       ]
     },
-    "/_authenticated/settings": {
-      "filePath": "_authenticated/settings/route.tsx",
-      "parent": "/_authenticated",
+    "/admin": {
+      "filePath": "admin/route.tsx",
       "children": [
-        "/_authenticated/settings/account",
-        "/_authenticated/settings/appearance",
-        "/_authenticated/settings/display",
-        "/_authenticated/settings/notifications",
-        "/_authenticated/settings/"
+        "/admin/settings",
+        "/admin/",
+        "/admin/apps/",
+        "/admin/chats/",
+        "/admin/help-center/",
+        "/admin/tasks/",
+        "/admin/users/"
+      ]
+    },
+    "/admin/settings": {
+      "filePath": "admin/settings/route.tsx",
+      "parent": "/admin",
+      "children": [
+        "/admin/settings/account",
+        "/admin/settings/appearance",
+        "/admin/settings/display",
+        "/admin/settings/notifications",
+        "/admin/settings/"
       ]
     },
     "/(auth)/forgot-password": {
@@ -657,49 +729,57 @@ export const routeTree = rootRoute
     "/(errors)/503": {
       "filePath": "(errors)/503.tsx"
     },
-    "/_authenticated/": {
-      "filePath": "_authenticated/index.tsx",
-      "parent": "/_authenticated"
+    "/_public/": {
+      "filePath": "_public/index.tsx",
+      "parent": "/_public"
     },
-    "/_authenticated/settings/account": {
-      "filePath": "_authenticated/settings/account.tsx",
-      "parent": "/_authenticated/settings"
+    "/admin/": {
+      "filePath": "admin/index.tsx",
+      "parent": "/admin"
     },
-    "/_authenticated/settings/appearance": {
-      "filePath": "_authenticated/settings/appearance.tsx",
-      "parent": "/_authenticated/settings"
+    "/admin/settings/account": {
+      "filePath": "admin/settings/account.tsx",
+      "parent": "/admin/settings"
     },
-    "/_authenticated/settings/display": {
-      "filePath": "_authenticated/settings/display.tsx",
-      "parent": "/_authenticated/settings"
+    "/admin/settings/appearance": {
+      "filePath": "admin/settings/appearance.tsx",
+      "parent": "/admin/settings"
     },
-    "/_authenticated/settings/notifications": {
-      "filePath": "_authenticated/settings/notifications.tsx",
-      "parent": "/_authenticated/settings"
+    "/admin/settings/display": {
+      "filePath": "admin/settings/display.tsx",
+      "parent": "/admin/settings"
     },
-    "/_authenticated/apps/": {
-      "filePath": "_authenticated/apps/index.tsx",
-      "parent": "/_authenticated"
+    "/admin/settings/notifications": {
+      "filePath": "admin/settings/notifications.tsx",
+      "parent": "/admin/settings"
     },
-    "/_authenticated/chats/": {
-      "filePath": "_authenticated/chats/index.tsx",
-      "parent": "/_authenticated"
+    "/_public/page2/": {
+      "filePath": "_public/page2/index.tsx",
+      "parent": "/_public"
     },
-    "/_authenticated/help-center/": {
-      "filePath": "_authenticated/help-center/index.tsx",
-      "parent": "/_authenticated"
+    "/admin/apps/": {
+      "filePath": "admin/apps/index.tsx",
+      "parent": "/admin"
     },
-    "/_authenticated/settings/": {
-      "filePath": "_authenticated/settings/index.tsx",
-      "parent": "/_authenticated/settings"
+    "/admin/chats/": {
+      "filePath": "admin/chats/index.tsx",
+      "parent": "/admin"
     },
-    "/_authenticated/tasks/": {
-      "filePath": "_authenticated/tasks/index.tsx",
-      "parent": "/_authenticated"
+    "/admin/help-center/": {
+      "filePath": "admin/help-center/index.tsx",
+      "parent": "/admin"
     },
-    "/_authenticated/users/": {
-      "filePath": "_authenticated/users/index.tsx",
-      "parent": "/_authenticated"
+    "/admin/settings/": {
+      "filePath": "admin/settings/index.tsx",
+      "parent": "/admin/settings"
+    },
+    "/admin/tasks/": {
+      "filePath": "admin/tasks/index.tsx",
+      "parent": "/admin"
+    },
+    "/admin/users/": {
+      "filePath": "admin/users/index.tsx",
+      "parent": "/admin"
     }
   }
 }
